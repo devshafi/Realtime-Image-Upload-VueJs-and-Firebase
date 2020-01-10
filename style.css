@@ -1,0 +1,31 @@
+#preview {
+    display: flex;
+    justify-content: center;
+
+}
+#preview img {
+    max-height: 150px;
+}
+
+#bottom {
+    display: flex;
+    justify-content: center;
+}
+
+#progress {
+    justify-content: center;
+}
+
+#progress p {
+    margin: 0;
+}
+
+#progress progress {
+    height: 16px;
+    align-self: center;
+    margin: 5px 5px;
+}
+
+#bottom button {
+    margin: 10px;
+}

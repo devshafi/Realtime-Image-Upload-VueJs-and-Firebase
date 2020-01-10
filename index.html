@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>VueJs Tutorial</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="vue-app">
+        <div class="container">
+
+            <!-- insert file -->
+            <label for="thumbnailImage">Example file input</label>
+            <input @change="onFileChange" ref="thumbnailImageRef" type="file" class="form-control-file" id="thumbnailImage"
+                name="thumbnailImage" accept="image/x-png,image/gif,image/jpeg">
+
+        </div>
+
+        <!-- show preview -->
+        <div id="preview">
+            <img class="img-thumbnail" v-if="url" v-bind:src="url">
+        </div>
+
+        <!-- upload or remove button -->
+        <div id="bottom">
+            <button type="button" class="btn btn-danger btn-sm" v-if="url != null && uploadCompleted" @click="removeThumbnail">Remove
+                Image</button>
+            <button type="button" class="btn btn-success btn-sm" v-if="url != null && !uploadCompleted" @click="onUpload">Upload
+                Image</button>
+        </div>
+
+        <!-- show upload progress -->
+        <div id="progress" v-if="uploadStarted" class="row">
+            <p v-if="!uploadCompleted" style="text-align: center;">Progress: {{uploadValue.toFixed()+"%"}}</p>
+            <p v-else style="text-align: center;">Completed</p>
+            <progress :value="uploadValue" max="100"></progress>
+        </div>
+
+    </div>
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-analytics.js"></script>
+
+    <!-- Firebase Storage API for accessing storage -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-storage.js"></script>
+
+
+    <!-- initialization of firebase and storage go here -->
+    <script src="firebase_config.js"></script>
+
+
+    <!-- Vuejs part goes here -->
+    <script src="app.js"></script>
+
+</body>
+
+</html>
